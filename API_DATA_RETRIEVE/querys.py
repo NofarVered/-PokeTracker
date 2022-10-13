@@ -20,4 +20,7 @@ SELECT_POKEMONS_BY_TRAINERS = """SELECT pokemons_info.name
                             ON trainers_info.trainer_id = trainer_pokemons.trainer_id
                             WHERE trainers_info.name LIKE ($s)"""
 
-# SELECT_POPULAR_POKEMON= nofar + itay
+SELECT_POPULAR_POKEMON = """SELECT pokemon_name, COUNT(trainer_name) AS number_of_trainers
+                            FROM Trainers_by_pokemon 
+                            ORDER BY number_of_trainers DESC
+                            LIMIT 1 """
