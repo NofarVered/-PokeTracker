@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS Trainers_pokemons(
 );
 
 -- -----------------------------------------------------
--- VIEW
+-- VIEW `sql_pokeTracker`
 -- -----------------------------------------------------
 CREATE VIEW Trainers_by_pokemon AS 
 SELECT Pokemons_info.name as pokemon_name, Trainers_info.name as trainer_name
