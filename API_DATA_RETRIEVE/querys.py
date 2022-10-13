@@ -1,5 +1,6 @@
 
-SELECT_HEAVIEST_POKEMON = """SELECT MAX(weight) AS LargestWeight, name FROM pokemons_info"""
+SELECT_HEAVIEST_POKEMON = """SELECT MAX(weight) AS LargestWeight, name 
+                            FROM pokemons_info"""
 
 SELECT_POKEMONS_BY_TYPE = """SELECT pokemons_info.name 
                             FROM pokemons_info 
@@ -7,7 +8,9 @@ SELECT_POKEMONS_BY_TYPE = """SELECT pokemons_info.name
                             ON pokemons_info.pokemons_id = pokemon_types.pokemons_id
                             WHERE type LIKE ($s)"""
 
-SELECT_TRAINERS_BY_POKEMON = """SELECT """
+SELECT_TRAINERS_BY_POKEMON = """SELECT pokemon_name, trainer_name 
+                                FROM Trainers_by_pokemon 
+                                WHERE pokemon_name = %s """
 
 SELECT_POKEMONS_BY_TRAINERS = """SELECT pokemons_info.name 
                             FROM pokemons_info 
