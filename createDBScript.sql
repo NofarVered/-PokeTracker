@@ -10,3 +10,13 @@ CREATE TABLE IF NOT EXISTS `sql_pokeTracker`.`Pokemons_info`
     'weight' FLOAT(11) DEFAULT 0,
 )
 
+
+CREATE TABLE  IF NOT EXISTS `sql_pokeTracker`.`pokemons_types`
+(
+    'pokemon_id' INT NOT NULL ,
+    'type' VARCHAR(50) NOT NULL,
+    PRIMARY KEY('id','type'),
+    FOREIGN KEY( 'pokemon_id') REFERENCES pokemons_info('pokemon_id'),
+)
+
+
