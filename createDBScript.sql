@@ -26,6 +26,16 @@ CREATE TABLE IF NOT EXISTS `sql_pokeTracker`.`trainers_info`
     'town' VARCHAR(50) NOT NULL,
 )
 
+CREATE TABLE IF NOT EXISTS `sql_pokeTracker`.`trainers_pokemons`
+(
+    'trainer_id' INT NOT NULL,
+    'pokemon_id' INT NOT NULL,
+    PRIMARY KEY('trainer_id','pokemon_id'),
+    FOREIGN KEY( 'pokemon_id') REFERENCES pokemons_info('pokemon_id'),
+    FOREIGN KEY( 'pokemon_id') REFERENCES trainers_info('trainer_id'),
+)
+
+
 
 
 
