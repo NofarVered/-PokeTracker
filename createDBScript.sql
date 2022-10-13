@@ -11,12 +11,21 @@ CREATE TABLE IF NOT EXISTS `sql_pokeTracker`.`Pokemons_info`
 )
 
 
-CREATE TABLE  IF NOT EXISTS `sql_pokeTracker`.`pokemons_types`
+CREATE TABLE IF NOT EXISTS `sql_pokeTracker`.`pokemons_types`
 (
     'pokemon_id' INT NOT NULL ,
     'type' VARCHAR(50) NOT NULL,
     PRIMARY KEY('id','type'),
     FOREIGN KEY( 'pokemon_id') REFERENCES pokemons_info('pokemon_id'),
 )
+
+CREATE TABLE IF NOT EXISTS `sql_pokeTracker`.`trainers_info`
+(
+    'trainer_id' INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    'name' VARCHAR(50) NOT NULL,
+    'town' VARCHAR(50) NOT NULL,
+)
+
+
 
 
