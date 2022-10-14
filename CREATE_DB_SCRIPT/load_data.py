@@ -13,14 +13,19 @@ class load_data:
                 pokemon["name"], pokemon["weight"])
             load_data.load_pokemon_type_table("???", pokemon["type"])
 
+    # Itay
     # @staticmethod
     # def load_pokemons_info_table(pokemon_name, pokemon_weight):
+    #   pass
 
-    #     # @staticmethod
-    #     # def load_trainers_info_table(): nofar
+    @staticmethod
+    def load_trainers_info_table():
 
-    # @staticmethod
-    # def load_pokemon_type_table(pokemon_id, pokemon_type):
+        # Itay
+        # @staticmethod
+        # def load_pokemon_type_table(pokemon_id, pokemon_type):
+        #     pass
 
-    #     # @staticmethod
-    #     # def load_pokemon_pokemons_table(): nofar
+    @staticmethod
+    def load_trainers_pokemons_table():
+        pass
