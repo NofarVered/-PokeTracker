@@ -21,11 +21,17 @@ class load_data:
     @staticmethod
     def load_trainers_info_table():
 
-        # Itay
-        # @staticmethod
-        # def load_pokemon_type_table(pokemon_id, pokemon_type):
-        #     pass
 
-    @staticmethod
-    def load_trainers_pokemons_table():
-        pass
+INSERT_INTO_TRAINERS_INFO
+# Itay
+# @staticmethod
+# def load_pokemon_type_table(pokemon_id, pokemon_type):
+#     pass
+
+
+@staticmethod
+def load_trainers_pokemons_table():
+    pass
+
+
+INSERT_INTO_TRAINERS_POKEMONS
