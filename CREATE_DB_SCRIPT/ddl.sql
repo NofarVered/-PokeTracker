@@ -36,16 +36,23 @@ CREATE TABLE IF NOT EXISTS Trainers_pokemons(
 -- -----------------------------------------------------
 -- VIEW `sql_pokeTracker`
 -- -----------------------------------------------------
-CREATE VIEW Trainers_by_pokemon AS 
+CREATE VIEW Trainers_pokemons_view AS 
 SELECT Pokemons_info.name as pokemon_name, Trainers_info.name as trainer_name
-FROM Trainers_pokemons, Trainers_info, Pokemons_info
+FROM Pokemons_info
 JOIN Trainers_pokemons 
-ON Trainers_pokemons.pokemons_id = Pokemons_info.pokemons_id
+ON Trainers_pokemons.pokemon_id = Pokemons_info.pokemon_id
 JOIN Trainers_info
-ON Trainers_info.trainer_id = Trainers_pokemons.trainer_id
-GROUP BY PokemonName;
+ON Trainers_info.trainer_id = Trainers_pokemons.trainer_id;
 
+CREATE VIEW Trainers_by_pokemon AS
+SELECT pokemon_name,trainer_name
+FROM Trainers_pokemons_view
+GROUP BY pokemon_name;
 
+CREATE VIEW Pokemons_by_Trainer AS
+SELECT trainer_name, pokemon_name
+FROM Trainers_pokemons_view
+GROUP BY trainer_name;
 
 
 
