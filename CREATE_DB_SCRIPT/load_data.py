@@ -1,4 +1,8 @@
 import json
+import typing
+from insert_querys import *
+import pymysql as mysql
+import mysql.connector
 
 
 class load_data:
@@ -19,19 +23,18 @@ class load_data:
     #   pass
 
     @staticmethod
-    def load_trainers_info_table():
+    def load_trainers_info_table(CONNECTOR, name: str, town: str):
+        mycursor = CONNECTOR.cursor()
+        mycursor.execute(INSERT_INTO_TRAINERS_INFO, [name, town])
+        mycursor.close()
 
+    # Itay
+    # @staticmethod
+    # def load_pokemon_type_table(pokemon_id, pokemon_type):
+    #     pass
 
-INSERT_INTO_TRAINERS_INFO
-# Itay
-# @staticmethod
-# def load_pokemon_type_table(pokemon_id, pokemon_type):
-#     pass
-
-
-@staticmethod
-def load_trainers_pokemons_table():
-    pass
-
-
-INSERT_INTO_TRAINERS_POKEMONS
+    # @staticmethod
+    # def load_trainers_pokemons_table(CONNECTOR, name: str, town: str):
+    #     pass
+    # INSERT_INTO_TRAINERS_POKEMONS
+    # should ask ! - nofar
