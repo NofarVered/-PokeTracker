@@ -1,8 +1,7 @@
 import json
 import typing
 from insert_querys import *
-import pymysql as mysql
-import mysql.connector
+from ..API_DATA_RETRIEVE.my_sql_proxy import my_sql_proxy
 
 
 class load_data:
@@ -15,18 +14,16 @@ class load_data:
         for pokemon in pokemon_data:
             load_data.load_pokemons_info_table(
                 pokemon["name"], pokemon["weight"])
-            load_data.load_pokemon_type_table("???", pokemon["type"])
-
-    # Itay
-    # @staticmethod
-    # def load_pokemons_info_table(pokemon_name, pokemon_weight):
-    #   pass
 
     @staticmethod
-    def load_trainers_info_table(CONNECTOR, name: str, town: str):
-        mycursor = CONNECTOR.cursor()
-        mycursor.execute(INSERT_INTO_TRAINERS_INFO, [name, town])
-        mycursor.close()
+    def load_pokemons_info_table(CONNECTOR: my_sql_proxy, pokemon_name: str, pokemon_weight: int):
+        CONNECTOR.execute_query(INSERT_INTO_POKEMON_INFO, [
+            pokemon_name, pokemon_weight])
+
+    @staticmethod
+    def load_trainers_info_table(CONNECTOR: my_sql_proxy, trainer_name: str, trainer_town: str):
+        CONNECTOR.execute_query(INSERT_INTO_TRAINERS_INFO, [
+            trainer_name, trainer_town])
 
     # Itay
     # @staticmethod

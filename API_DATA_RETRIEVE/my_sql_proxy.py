@@ -24,6 +24,6 @@ class my_sql_proxy:
         try:
             with self.connection.cursor() as cursor:
                 cursor.execute(sql_query, params)
-                self.connection.commit()
+                self.connection.close()
         except Error as e:
             raise e
