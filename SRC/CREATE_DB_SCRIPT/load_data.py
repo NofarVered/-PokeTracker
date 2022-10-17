@@ -1,7 +1,7 @@
 import json
-from .utils.insert_querys import *
+from .queries.insert_querys import *
 from ..API_DATA_RETRIEVE.my_sql_proxy import my_sql_proxy
-from .utils.id_manager import Id_manager
+from .services.id_manager import Id_manager
 
 
 class load_data:
