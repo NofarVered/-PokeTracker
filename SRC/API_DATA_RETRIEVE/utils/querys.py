@@ -20,3 +20,4 @@ SELECT_POPULAR_POKEMON = """SELECT pokemon_name, COUNT(trainer_name) AS number_o
                             FROM Trainers_by_pokemon_view
                             ORDER BY number_of_trainers DESC
                             LIMIT 1 """
+
