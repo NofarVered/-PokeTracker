@@ -30,7 +30,7 @@ CREATE TABLE IF NOT EXISTS Trainers_pokemons(
     pokemon_id VARCHAR(50) NOT NULL,
     PRIMARY KEY(trainer_id,pokemon_id),
     FOREIGN KEY(pokemon_id) REFERENCES Pokemons_info(pokemon_id),
-    FOREIGN KEY(pokemon_id) REFERENCES Trainers_info(trainer_id)
+    FOREIGN KEY(trainer_id) REFERENCES Trainers_info(trainer_id)
 );
 
 -- -- -----------------------------------------------------
@@ -44,12 +44,12 @@ ON Trainers_pokemons.pokemon_id = Pokemons_info.pokemon_id
 JOIN Trainers_info
 ON Trainers_info.trainer_id = Trainers_pokemons.trainer_id;
 
-CREATE VIEW Trainers_by_pokemon AS
+CREATE VIEW Trainers_by_pokemon_view AS
 SELECT pokemon_name,trainer_name
 FROM Trainers_pokemons_view
 GROUP BY pokemon_name;
 
-CREATE VIEW Pokemons_by_Trainer AS
+CREATE VIEW Pokemons_by_Trainer_view AS
 SELECT trainer_name, pokemon_name
 FROM Trainers_pokemons_view
 GROUP BY trainer_name;

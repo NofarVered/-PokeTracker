@@ -9,7 +9,7 @@ SELECT_POKEMONS_BY_TYPE = """SELECT pokemons_info.name
                             WHERE type LIKE %s"""
 
 SELECT_TRAINERS_BY_POKEMON = """SELECT pokemon_name, trainer_name 
-                                FROM Trainers_by_pokemon 
+                                FROM Trainers_by_pokemon_view 
                                 WHERE pokemon_name LIKE %s """
 
 SELECT_POKEMONS_BY_TRAINERS = """SELECT pokemons_info.name 
@@ -17,6 +17,6 @@ SELECT_POKEMONS_BY_TRAINERS = """SELECT pokemons_info.name
                             WHERE trainer_name LIKE %s """
 
 SELECT_POPULAR_POKEMON = """SELECT pokemon_name, COUNT(trainer_name) AS number_of_trainers
-                            FROM Trainers_by_pokemon 
+                            FROM Trainers_by_pokemon_view
                             ORDER BY number_of_trainers DESC
                             LIMIT 1 """
