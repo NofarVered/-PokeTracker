@@ -53,8 +53,8 @@ def get_pokemons_by_type():
         return {"pokemon": result}
     except requests.exceptions.HTTPError as err:
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Invalid pokemon type"
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Internal Server Error"
         )
 
 
@@ -66,8 +66,8 @@ def get_pokemons_by_type():
         return {"pokemon": result}
     except requests.exceptions.HTTPError as err:
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Invalid pokemon type"
+            status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+            detail="Internal Server Error"
         )
 
 
