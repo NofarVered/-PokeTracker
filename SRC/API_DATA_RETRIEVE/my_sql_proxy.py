@@ -3,7 +3,7 @@ from signal import raise_signal
 import string
 from time import process_time_ns
 from typing import List
-import my_sql_auth
+from .my_sql_auth import my_sql_auth
 import pymysql as mysql
 
 
