@@ -11,19 +11,19 @@ from SRC.CREATE_DB_SCRIPT.services.id_manager import Id_manager
 app = FastAPI()
 db_auto = my_sql_auth()
 CONNECTOR = my_sql_proxy(db_auto)
+load_data(CONNECTOR)
 
 
 @app.get("/")
 def root():
-    load_data(CONNECTOR)
     return "server is running"
 
 
-@app.get("/pokemons/{trainer_name}", status_code=200)
-def get_pokemons_by_trainer(trainer_name):
+@app.get("/pokemons", status_code=200)
+def get_pokemons_by_trainer(trainerName):
     try:
         result = CONNECTOR.execute_select_all_query(SELECT_POKEMONS_BY_TRAINERS, [
-            trainer_name])
+            trainerName])
         return {"pokemons": result}
     except requests.exceptions.HTTPError as err:
         raise HTTPException(
@@ -32,11 +32,11 @@ def get_pokemons_by_trainer(trainer_name):
         )
 
 
-@app.get("/pokemons/{pokemon_type}", status_code=200)
-def get_pokemons_by_type(pokemon_type):
+@app.get("/pokemons", status_code=200)
+def get_pokemons_by_type(pokemonType):
     try:
         result = CONNECTOR.execute_select_all_query(SELECT_POKEMONS_BY_TYPE, [
-            pokemon_type])
+            pokemonType])
         return {"pokemons": result}
     except requests.exceptions.HTTPError as err:
         raise HTTPException(
@@ -45,11 +45,37 @@ def get_pokemons_by_type(pokemon_type):
         )
 
 
-@app.get("/trainers/{pokemon_name}", status_code=200)
-def get_trainers_by_pokemon(pokemon_name):
+@app.get("/pokemons/heaviest", status_code=200)
+def get_pokemons_by_type():
+    try:
+        result = CONNECTOR.execute_select_one_query(
+            SELECT_HEAVIEST_POKEMON, [])
+        return {"pokemon": result}
+    except requests.exceptions.HTTPError as err:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Invalid pokemon type"
+        )
+
+
+@app.get("/pokemons/popular", status_code=200)
+def get_pokemons_by_type():
+    try:
+        result = CONNECTOR.execute_select_one_query(
+            SELECT_POPULAR_POKEMON, [])
+        return {"pokemon": result}
+    except requests.exceptions.HTTPError as err:
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND,
+            detail="Invalid pokemon type"
+        )
+
+
+@app.get("/trainers", status_code=200)
+def get_trainers_by_pokemon(pokemonName):
     try:
         result = CONNECTOR.execute_select_all_query(SELECT_POKEMONS_BY_TRAINERS, [
-            pokemon_name])
+            pokemonName])
     except requests.exceptions.HTTPError as err:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
@@ -74,11 +100,11 @@ async def adding_trainer(request: Request):
 
 
 @app.delete("/trainers/", status_code=204)
-def remove_pokemon_of_trainer(pokemon_name: str, trainer_name: str):
+def remove_pokemon_of_trainer(pokemon_name: str, trainerName: str):
     pokemon_info = CONNECTOR.execute_select_one_query(SELECT_POKEMON_BY_NAME, [
         pokemon_name])
     trainer_info = CONNECTOR.execute_select_one_query(SELECT_TRAINER_BY_NAME, [
-        trainer_name])
+        trainerName])
     CONNECTOR.execute_insert_query(DELETE_POKEMON_OF_TRAINER, [
         trainer_info["trainer_id"], pokemon_info["pokemon_id"]])
 
