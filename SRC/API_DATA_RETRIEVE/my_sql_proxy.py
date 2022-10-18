@@ -1,3 +1,4 @@
+from cgitb import reset
 from msilib.schema import Error
 from signal import raise_signal
 import string
@@ -26,5 +27,23 @@ class my_sql_proxy:
             with self.connection.cursor() as cursor:
                 cursor.execute(sql_query, params)
                 self.connection.commit()
+        except Exception as e:
+            print("Exeception occured:{}".format(e))
+
+    def execute_select_all_query(self, sql_query: string, params: List):
+        try:
+            with self.connection.cursor() as cursor:
+                cursor.execute(sql_query, params)
+                result = [obj for obj in cursor.fetchall()]
+                return result
+        except Exception as e:
+            print("Exeception occured:{}".format(e))
+
+    def execute_select_one_query(self, sql_query: string, params: List):
+        try:
+            with self.connection.cursor() as cursor:
+                cursor.execute(sql_query, params)
+                result = cursor.fetchone()
+                return result
         except Exception as e:
             print("Exeception occured:{}".format(e))
