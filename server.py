@@ -11,11 +11,11 @@ from SRC.CREATE_DB_SCRIPT.services.id_manager import Id_manager
 app = FastAPI()
 db_auto = my_sql_auth()
 CONNECTOR = my_sql_proxy(db_auto)
-load_data(CONNECTOR)
 
 
 @app.get("/")
 def root():
+    load_data(CONNECTOR)
     return "server is running"
 
 
@@ -71,6 +71,16 @@ async def adding_trainer(request: Request):
             status_code=status.HTTP_404_NOT_FOUND,
             detail="Invalid Trainer"
         )
+
+
+@app.delete("/trainers/", status_code=204)
+def remove_pokemon_of_trainer(pokemon_name: str, trainer_name: str):
+    pokemon_info = CONNECTOR.execute_select_one_query(SELECT_POKEMON_BY_NAME, [
+        pokemon_name])
+    trainer_info = CONNECTOR.execute_select_one_query(SELECT_TRAINER_BY_NAME, [
+        trainer_name])
+    CONNECTOR.execute_insert_query(DELETE_POKEMON_OF_TRAINER, [
+        trainer_info["trainer_id"], pokemon_info["pokemon_id"]])
 
 
 if __name__ == "__main__":
