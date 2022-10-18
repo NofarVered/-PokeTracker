@@ -26,3 +26,4 @@ def get_pokemon(CONNECTOR: my_sql_proxy, pokemon_id: str, pokemon_name: str):
     types_list = get_types_of_pokemon_from_pokemonAPI(pokemon_name)
     extracts_types_list = extracts_types_from_list(types_list)
     insert_new_types_to_table(CONNECTOR, pokemon_id, extracts_types_list)
+    return extracts_types_list
