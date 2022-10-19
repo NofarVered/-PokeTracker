@@ -1,7 +1,6 @@
 import json
 from .queries.insert_querys import *
-from ..API_DATA_RETRIEVE.my_sql_proxy import my_sql_proxy
-from ..API_DATA_RETRIEVE.my_sql_auth import my_sql_auth
+from API_DATA_RETRIEVE.my_sql_proxy import my_sql_proxy
 from .services.id_manager import Id_manager
 
 
@@ -45,4 +44,4 @@ def load_trainers_pokemons_table(CONNECTOR: my_sql_proxy, pokemon_id: str, train
 
 def load_data(CONNECTOR: my_sql_proxy):
     load_pokemon_from_json_file(
-        "SRC\CREATE_DB_SCRIPT\services\poke_data.json", CONNECTOR)
+        "CREATE_DB_SCRIPT\services\poke_data.json", CONNECTOR)
