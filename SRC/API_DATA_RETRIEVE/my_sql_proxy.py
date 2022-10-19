@@ -39,10 +39,11 @@ class my_sql_proxy:
         except Exception as e:
             print("Exeception occured:{}".format(e))
 
-    def execute_select_one_query(self, sql_query: string, params: List):
+    def execute_select_one_query(self, sql_query: string, params: List = None):
         try:
             with self.connection.cursor() as cursor:
-                cursor.execute(sql_query, params)
+                cursor.execute(
+                    sql_query, params) if params else cursor.execute(sql_query)
                 result = cursor.fetchone()
                 return result
         except Exception as e:
