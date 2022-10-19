@@ -47,4 +47,4 @@ class my_sql_proxy:
                 result = cursor.fetchone()
                 return result
         except Exception as e:
-            print("Exeception occured:{}".format(e))
+            raise e

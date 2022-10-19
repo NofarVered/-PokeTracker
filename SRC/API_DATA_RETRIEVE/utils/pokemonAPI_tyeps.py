@@ -1,8 +1,8 @@
 from typing import List
 import requests
 
-from SRC.API_DATA_RETRIEVE.my_sql_proxy import my_sql_proxy
-from SRC.CREATE_DB_SCRIPT.load_data import load_pokemon_type_table
+from API_DATA_RETRIEVE.my_sql_proxy import my_sql_proxy
+from CREATE_DB_SCRIPT.load_data import load_pokemon_type_table
 
 
 def get_types_from_pokemonAPI(pokemon_name: str):
@@ -22,7 +22,7 @@ def insert_types_record(CONNECTOR: my_sql_proxy, pokemon_id: str, types_list: Li
         load_pokemon_type_table(CONNECTOR, pokemon_id, pokemo_type)
 
 
-def get_pokemon(CONNECTOR: my_sql_proxy, pokemon_id: str, pokemon_name: str):
+def get_types(CONNECTOR: my_sql_proxy, pokemon_id: str, pokemon_name: str):
     types_list = get_types_from_pokemonAPI(pokemon_name)
     extracts_types_list = pharse_types(types_list)
     insert_types_record(CONNECTOR, pokemon_id, extracts_types_list)

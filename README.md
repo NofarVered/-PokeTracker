@@ -177,3 +177,39 @@ Response:
 }
 
 ```
+
+Request:
+
+```
+PUT http://localhost:8000/pokemons/bulbasaur
+
+```
+
+Response:
+
+```
+{
+    "types": [
+        "grass",
+        "poison"
+    ]
+}
+
+```
+
+Request:
+
+```
+PUT http://localhost:8000/evolve?pokemon_name=ivysaur&trainer_name=Candice
+
+```
+
+Response:
+
+```
+{
+    "pokemon": "venusaur",
+    "trainer": "Candice"
+}
+
+```
