@@ -22,6 +22,8 @@ def get_pokemons_by_field(trainer_name: str = "", pokemon_type: str = ""):
             detail="Invalid trainer name"
         )
 
+# @router.get("/pokemons/{pokemon_name}", status_code=200) Nofar
+
 
 @router.get("/pokemons/heaviest", status_code=200)
 def get_pokemons_by_type():

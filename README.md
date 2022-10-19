@@ -4,8 +4,6 @@
 
 <img align="left" alt="Pyton" width="70px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/python/python.png" />
 
-
-
 <br />
 <br />
 
@@ -160,5 +158,22 @@ Response:
 ```
 
 No Content
+
+```
+
+Request:
+
+```
+PUT http://localhost:8000/evolve?pokemon_name=bulbasaur&trainer_name=Archie
+
+```
+
+Response:
+
+```
+{
+    "pokemon": "ivysaur",
+    "trainer": "Archie"
+}
 
 ```

@@ -13,7 +13,7 @@ router = APIRouter()
 
 
 @router.get("/trainers", status_code=200)
-def get_trainers_by_pokemon(pokemon_name):
+def get_trainers_by_pokemon(pokemon_name: str):
     try:
         result = CONNECTOR.execute_select_all_query(SELECT_TRAINERS_BY_POKEMON, [
             pokemon_name])
