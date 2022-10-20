@@ -8,7 +8,7 @@ from ROUTERS import trainers_router, pokemons_router, evolve_router
 app = FastAPI()
 AUTH = my_sql_auth()
 CONNECTOR = my_sql_proxy(AUTH)
-# load_data(CONNECTOR)
+load_data(CONNECTOR)
 
 app.include_router(trainers_router.router)
 app.include_router(pokemons_router.router)

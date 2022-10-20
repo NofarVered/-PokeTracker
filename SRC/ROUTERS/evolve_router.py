@@ -30,5 +30,5 @@ def get_pokemons_by_field(trainer_name: str, pokemon_name: str):
     except Exception as e:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND,
-            detail="Invalid pokemon name"
+            detail="Exeception occured:{}".format(e)
         )

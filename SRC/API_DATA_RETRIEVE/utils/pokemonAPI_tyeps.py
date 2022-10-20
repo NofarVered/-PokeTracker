@@ -1,4 +1,5 @@
 from typing import List
+from unittest import result
 import requests
 
 from API_DATA_RETRIEVE.my_sql_proxy import my_sql_proxy
@@ -6,8 +7,12 @@ from CREATE_DB_SCRIPT.load_data import load_pokemon_type_table
 
 
 def get_types_from_pokemonAPI(pokemon_name: str):
-    return requests.get(
-        f"https://pokeapi.co/api/v2/pokemon/{pokemon_name}").json()["types"]
+    try:
+        result = requests.get(
+            f"https://pokeapi.co/api/v2/pokemon/{pokemon_name}").json()["types"]
+        return result
+    except Exception as e:
+        return e
 
 
 def pharse_types(types_list: List):
@@ -23,7 +28,10 @@ def insert_types_record(CONNECTOR: my_sql_proxy, pokemon_id: str, types_list: Li
 
 
 def get_types(CONNECTOR: my_sql_proxy, pokemon_id: str, pokemon_name: str):
-    types_list = get_types_from_pokemonAPI(pokemon_name)
-    extracts_types_list = pharse_types(types_list)
-    insert_types_record(CONNECTOR, pokemon_id, extracts_types_list)
-    return extracts_types_list
+    try:
+        types_list = get_types_from_pokemonAPI(pokemon_name)
+        extracts_types_list = pharse_types(types_list)
+        insert_types_record(CONNECTOR, pokemon_id, extracts_types_list)
+        return extracts_types_list
+    except Exception as e:
+        return e

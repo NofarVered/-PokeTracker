@@ -20,7 +20,7 @@ class my_sql_proxy:
                 cursorclass=mysql.cursors.DictCursor
             )
         except Exception as e:
-            print("Exeception occured:{}".format(e))
+            return e
 
     def execute_insert_query(self, sql_query: string, params: List):
         try:
@@ -28,7 +28,7 @@ class my_sql_proxy:
                 cursor.execute(sql_query, params)
                 self.connection.commit()
         except Exception as e:
-            print("Exeception occured:{}".format(e))
+            return e
 
     def execute_select_all_query(self, sql_query: string, params: List):
         try:
@@ -37,7 +37,7 @@ class my_sql_proxy:
                 result = [obj for obj in cursor.fetchall()]
                 return result
         except Exception as e:
-            print("Exeception occured:{}".format(e))
+            return e
 
     def execute_select_one_query(self, sql_query: string, params: List = None):
         try:
@@ -47,4 +47,4 @@ class my_sql_proxy:
                 result = cursor.fetchone()
                 return result
         except Exception as e:
-            raise e
+            return e
