@@ -27,3 +27,18 @@ def test_pokemon_types_updated():
     assert response.status_code == status.HTTP_200_OK, " status code in pokemon types updated isn't 200"
     assert "grass" in response_body, "grass isn't int the types list "
     assert "poison" in response_body, "poison isn't int the types list "
+
+
+def test_delete_pokemon_of_trainer():
+    first_response = client.get("/pokemons?trainer_name=Whitney")
+    assert first_response.status_code == status.HTTP_200_OK, " status code in get pokemons by trainer isn't 200"
+    first_response_body = first_response.json()["pokemons"]
+    assert "venusaur" in [pokemon["pokemon_name"]
+                          for pokemon in first_response_body], "venusaur isn't in the pokemons list"
+    second_response = client.delete(
+        "/trainers?pokemon_name=venusaur&trainer_name=Whitney")
+    assert second_response.status_code == status.HTTP_204_NO_CONTENT, " status code in delete pokemon of_trainer isn't 204"
+    third_response = client.get("/pokemons?trainer_name=Whitney")
+    third_response_body = third_response.json()["pokemons"]
+    assert "venusaur" not in [pokemon["pokemon_name"]
+                              for pokemon in third_response_body], "venusaur is in the pokemons list"
