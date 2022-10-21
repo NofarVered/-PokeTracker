@@ -20,7 +20,7 @@ class my_sql_proxy:
                 cursorclass=mysql.cursors.DictCursor
             )
         except Exception as e:
-            return e
+            print(e)
 
     def execute_insert_query(self, sql_query: string, params: List):
         try:

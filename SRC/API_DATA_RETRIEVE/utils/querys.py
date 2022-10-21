@@ -29,4 +29,4 @@ SELECT_TRAINER_BY_NAME = """SELECT *
                                 FROM Trainers_info 
                                 WHERE name LIKE %s """
 
-DELETE_POKEMON_OF_TRAINER = """DELETE FROM trainers_pokemons WHERE trainer_id LIKE %s AND pokemon_id LIKE %s ;"""
+DELETE_POKEMON_OF_TRAINER = """DELETE FROM trainers_pokemons WHERE trainer_id = %s AND pokemon_id = %s ;"""

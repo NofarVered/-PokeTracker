@@ -42,3 +42,13 @@ def test_delete_pokemon_of_trainer():
     third_response_body = third_response.json()["pokemons"]
     assert "venusaur" not in [pokemon["pokemon_name"]
                               for pokemon in third_response_body], "venusaur is in the pokemons list"
+
+
+def test_get_pokemons_by_owner():
+    response = client.get("/pokemons?trainer_name=Drasna")
+    response_body = response.json()["pokemons"]
+    assert response.status_code == status.HTTP_200_OK, " status code in get pokemon by type isn't 200"
+    assert "wartortle" in [pokemon["pokemon_name"]
+                           for pokemon in response_body], "wartortle isn't in the list"
+    assert "beedrill" in [pokemon["pokemon_name"]
+                          for pokemon in response_body], "beedrill isn't in the list"

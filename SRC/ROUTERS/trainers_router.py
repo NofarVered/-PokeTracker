@@ -47,6 +47,8 @@ def remove_pokemon_of_trainer(pokemon_name: str, trainer_name: str):
             pokemon_name])
         trainer_info = CONNECTOR.execute_select_one_query(SELECT_TRAINER_BY_NAME, [
             trainer_name])
+        print(pokemon_info["pokemon_id"])
+        print(trainer_info["trainer_id"])
         CONNECTOR.execute_insert_query(DELETE_POKEMON_OF_TRAINER, [
             trainer_info["trainer_id"], pokemon_info["pokemon_id"]])
     except Exception as e:
