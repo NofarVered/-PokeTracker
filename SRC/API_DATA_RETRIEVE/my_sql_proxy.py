@@ -28,6 +28,7 @@ class my_sql_proxy:
                 cursor.execute(sql_query, params)
                 self.connection.commit()
         except Exception as e:
+            print(e)
             return e
 
     def execute_select_all_query(self, sql_query: string, params: List):

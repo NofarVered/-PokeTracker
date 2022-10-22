@@ -22,6 +22,7 @@ def load_pokemon_from_json_file(path: str, data_base: my_sql_proxy):
                 load_trainers_pokemons_table(
                     data_base, trainer_id, pokemon["id"])
     except Exception as e:
+        print(e)
         return e
 
 
@@ -60,7 +61,6 @@ def load_trainers_pokemons_table(CONNECTOR: my_sql_proxy, pokemon_id: str, train
 def load_data(CONNECTOR: my_sql_proxy):
     try:
         load_pokemon_from_json_file(
-            "CREATE_DB_SCRIPT\services\poke_data.json", CONNECTOR)
-        print("fuck")
+            "SRC\CREATE_DB_SCRIPT\services\poke_data.json", CONNECTOR)
     except Exception as e:
         return e
