@@ -49,3 +49,7 @@ class my_sql_proxy:
                 return result
         except Exception as e:
             return e
+
+
+AUTH = my_sql_auth()
+CONNECTOR = my_sql_proxy(AUTH)

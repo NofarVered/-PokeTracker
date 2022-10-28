@@ -1,12 +1,9 @@
 from fastapi import APIRouter, HTTPException, Request, status
-from API_DATA_RETRIEVE.my_sql_auth import my_sql_auth
-from API_DATA_RETRIEVE.my_sql_proxy import my_sql_proxy
+from API_DATA_RETRIEVE.my_sql_proxy import CONNECTOR
 from API_DATA_RETRIEVE.utils.querys import *
 from CREATE_DB_SCRIPT.queries.insert_querys import INSERT_INTO_TRAINERS_INFO
 from CREATE_DB_SCRIPT.services.id_manager import *
 
-AUTH = my_sql_auth()
-CONNECTOR = my_sql_proxy(AUTH)
 
 router = APIRouter()
 

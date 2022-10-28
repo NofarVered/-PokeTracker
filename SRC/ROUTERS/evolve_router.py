@@ -1,13 +1,10 @@
 from fastapi import APIRouter, HTTPException, status
 import requests
-from API_DATA_RETRIEVE.my_sql_auth import my_sql_auth
-from API_DATA_RETRIEVE.my_sql_proxy import my_sql_proxy
+from API_DATA_RETRIEVE.my_sql_proxy import CONNECTOR
 from API_DATA_RETRIEVE.utils.querys import *
 from API_DATA_RETRIEVE.utils.pokemonAPI_evolve import get_evolution
 from CREATE_DB_SCRIPT.load_data import load_trainers_pokemons_table
 
-AUTH = my_sql_auth()
-CONNECTOR = my_sql_proxy(AUTH)
 
 router = APIRouter()
 
