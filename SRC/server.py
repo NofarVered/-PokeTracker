@@ -5,7 +5,7 @@ from API_DATA_RETRIEVE.my_sql_proxy import CONNECTOR
 from ROUTERS import trainers_router, pokemons_router, evolve_router
 
 app = FastAPI()
-load_data(CONNECTOR)
+# load_data(CONNECTOR)
 
 app.include_router(trainers_router.router)
 app.include_router(pokemons_router.router)
