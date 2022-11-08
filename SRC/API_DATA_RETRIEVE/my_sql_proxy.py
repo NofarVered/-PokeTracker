@@ -1,14 +1,15 @@
-from cgitb import reset
-from msilib.schema import Error
-from signal import raise_signal
+# from cgitb import reset
+# from msilib.schema import Error
+# from signal import raise_signal
 import string
-from time import process_time_ns
+# from time import process_time_ns
 from typing import List
 from .my_sql_auth import my_sql_auth
 import pymysql as mysql
 
 
-class my_sql_proxy:
+class my_sql_proxy:  ## TDOD : camel case
+
     def __init__(self, auth: my_sql_auth):
         try:
             self.connection = mysql.connect(
@@ -29,16 +30,13 @@ class my_sql_proxy:
                 self.connection.commit()
         except Exception as e:
             print(e)
-            return e
+            raise e
 
     def execute_select_all_query(self, sql_query: string, params: List):
-        try:
-            with self.connection.cursor() as cursor:
-                cursor.execute(sql_query, params)
-                result = [obj for obj in cursor.fetchall()]
-                return result
-        except Exception as e:
-            return e
+        with self.connection.cursor() as cursor:
+            cursor.execute(sql_query, params)
+            result = [obj for obj in cursor.fetchall()]
+            return result
 
     def execute_select_one_query(self, sql_query: string, params: List = None):
         try:
@@ -51,5 +49,11 @@ class my_sql_proxy:
             return e
 
 
+
+
 AUTH = my_sql_auth()
-CONNECTOR = my_sql_proxy(AUTH)
+
+CONNECTOR = None
+if CONNECTOR is None:
+    CONNECTOR = my_sql_proxy(AUTH)
+

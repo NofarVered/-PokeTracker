@@ -1,3 +1,4 @@
+import pymysql
 from fastapi import APIRouter, HTTPException, status
 from API_DATA_RETRIEVE.my_sql_proxy import CONNECTOR
 from API_DATA_RETRIEVE.utils.querys import *
@@ -7,17 +8,22 @@ from API_DATA_RETRIEVE.utils.pokemonAPI_tyeps import get_types
 router = APIRouter()
 
 
+
+
 @router.get("/pokemons", status_code=200)
 def get_pokemons_by_field(trainer_name: str = "", pokemon_type: str = ""):
-    try:
-        result = CONNECTOR.execute_select_all_query(SELECT_POKEMONS_BY_TRAINERS if trainer_name else SELECT_POKEMONS_BY_TYPE, [
-            trainer_name if trainer_name else pokemon_type])
-        return {"pokemons": result}
-    except Exception as e:
+
+    if trainer_name and pokemon_type:
+        raise HTTPException(status_code=status.HTTP_400_BAD_REQUEST, detail="got both trainer name and pokemon type")
+
+    result = CONNECTOR.execute_select_all_query(SELECT_POKEMONS_BY_TRAINERS if trainer_name else SELECT_POKEMONS_BY_TYPE, [
+        trainer_name if trainer_name else pokemon_type])
+
+    if not result:
         raise HTTPException(
-            status_code=status.HTTP_404_NOT_FOUND,
-            detail="Exeception occured:{}".format(e)
+            status_code=status.HTTP_404_NOT_FOUND, detail="cannot find any result"
         )
+    return {"pokemons": result}
 
 
 @router.get("/pokemons/{pokemon_name}", status_code=200)
